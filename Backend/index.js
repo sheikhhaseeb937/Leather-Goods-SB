@@ -23,6 +23,10 @@ app.use(express.json()); // To parse incoming JSON
 mongoConnect(); // Ensure this has a try/catch or promise error handling
 
 // Routes
+app.get("/", (req, res) => {
+    res.send("Welcome to Loan Application API");
+})
+
 app.use("/api/auth", authRoutes);     // Example: POST /api/auth/login
 app.use("/api/images", imageRoutes);  // Example: POST /api/images/upload
 

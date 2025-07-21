@@ -2,9 +2,10 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import mongoConnect from "./src/config/db.js"; // ✅ FIXED path
+import mongoConnect from "./src/config/db.js"; 
 import authRoutes from "./src/routes/auth.route.js";
-import imageRoutes from "./src/routes/image.routes.js";
+
+import imageroutes from "./src/routes/image.routes.js";
 
 // Load .env variables
 dotenv.config();
@@ -14,7 +15,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: "*", // 🔒 Consider restricting this in production
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
 app.use(express.json()); // To parse incoming JSON
@@ -27,8 +28,11 @@ app.get("/", (req, res) => {
     res.send("Welcome to Loan Application API");
 })
 
-app.use("/api/auth", authRoutes);     // Example: POST /api/auth/login
-app.use("/api/images", imageRoutes);  // Example: POST /api/images/upload
+///api
+app.use("/",authRoutes)
+
+///api images user
+app.use("/",imageroutes) // Example: POST /api/images/upload
 
 // Port
 const PORT = process.env.PORT || 8000;

@@ -55,7 +55,7 @@ imgSaveUrl= responseImg.data.imageUrl
       image: imgSaveUrl
     })
 
-      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/signup`,sendData)
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/signup`,sendData)
 console.log(response)
 if(response){
 toast.success(response?.data?.message, {

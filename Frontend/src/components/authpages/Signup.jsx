@@ -42,7 +42,7 @@ let imgSaveUrl = ""
 
 
 
-  const responseImg = await axios.post(`${import.meta.env.VITE_BASE_URL}/upload`,ImgUrl)
+  const responseImg = await axios.post(`${import.meta.env.VITE_BASE_URL}/api/upload`,ImgUrl)
 console.log(responseImg.data.imageUrl)
 
 

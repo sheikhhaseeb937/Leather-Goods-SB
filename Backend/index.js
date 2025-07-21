@@ -29,10 +29,10 @@ app.get("/", (req, res) => {
 })
 
 ///api
-app.use("/",authRoutes)
+app.use("/api",authRoutes)
 
 ///api images user
-app.use("/",imageroutes) // Example: POST /api/images/upload
+app.use("/api",imageroutes) 
 
 // Port
 const PORT = process.env.PORT || 8000;

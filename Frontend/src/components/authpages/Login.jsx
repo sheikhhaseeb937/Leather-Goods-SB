@@ -25,7 +25,7 @@ const navigate = useNavigate()
     console.log("Form Data:", formData);
 
     try {
-        const response =await axios.post(`${import.meta.env.VITE_BASE_URL}/login`,{
+        const response =await axios.post(`${import.meta.env.VITE_BASE_URL}/api/login`,{
             email:formData.email,
             password:formData.password
         })

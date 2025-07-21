@@ -1,5 +1,5 @@
 import React from 'react';
-import leatherImage from '../../assets/Images/Info.webp'; // Replace with your actual path
+import leatherImage from '../../assets/Images/info.webp'; // Replace with your actual path
 
 const LeatherSection = () => {
   return (

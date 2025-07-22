@@ -15,9 +15,10 @@ const Navbar = () => {
     { name: "Men's Wallets", link: "/mens" },
     { name: "Ladies Wallets", link: "/ladies" },
     { name: "Bags", link: "/bags" },
+     { name: "Ladies Bags", link: "/ladiesbags" },
     { name: "Gifts", link: "/gifts" },
-    { name: "Travel & More", link: "/travel" },
-    { name: "Loyalty Program", link: "/loyalty" },
+    { name: "Card hOlder", link: "/cardholder" },
+    { name: "Keychain", link: "/keychain" },
     { name: "Track Order", link: "/track-order" },
   ];
 
@@ -83,7 +84,7 @@ const Navbar = () => {
 
       {/* Desktop Navigation */}
       <nav className="hidden lg:flex justify-center items-center border-b">
-        <ul className="flex space-x-8 py-2 text-sm font-semibold uppercase text-gray-600">
+        <ul className="flex space-x-8 py-2 text-md  font-semibold uppercase text-gray-600">
           {navLinks.map((link, idx) => (
             <li key={idx}>
               <Link to={link.link} className="relative group text-[#303030]">

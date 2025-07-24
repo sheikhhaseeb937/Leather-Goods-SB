@@ -104,7 +104,7 @@ transition: Slide,
             placeholder="Name"
             value={formData.fullName}
             onChange={handleChange}
-            className="w-full  bg-gray-100 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
+            className="w-full text-black bg-gray-100 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
             required
           />
           <input

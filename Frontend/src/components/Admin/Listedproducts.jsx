@@ -69,38 +69,43 @@ navigate('/login')
        
 
         {/* Main grid content */}
-        <div className="p-4 overflow-y-auto">
-          <h1 className="text-3xl text-gray-900 font-bold text-center mb-6 hidden sm:block">Listed Products</h1>
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-            {products.map((item, index) => (
-              <div
-                key={index}
-                className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
-                onMouseEnter={() => setHoverIndex(index)}
-                onMouseLeave={() => setHoverIndex(null)}
-              >
-                <img
-                  src={hoverIndex === index ? item.image[1] : item.image[0]}
-                  alt={item.pname}
-                  className="w-full h-60 object-cover transition duration-300"
-                />
+    <div className="p-4 h-full flex flex-col">
+  <h1 className="text-3xl text-gray-900 font-bold text-center mb-4">Listed Products</h1>
 
-                <div className="p-4 text-center">
-                  <div className="flex justify-center items-center space-x-1 text-yellow-500 text-sm">
-                    {Array(5).fill().map((_, i) => (
-                      <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09L5.5 12.18 1 8.545l6.09-.89L10 2l2.91 5.655 6.09.89-4.5 3.636 1.378 5.91z" />
-                      </svg>
-                    ))}
-                    <span className="text-gray-600 text-xs ml-2">93 reviews</span>
-                  </div>
-                  <h3 className="uppercase mt-2 text-sm font-semibold text-gray-800">{item.pname}</h3>
-                  <p className="text-gray-600 mt-1">RS. {item.price} PKR</p>
-                </div>
-              </div>
-            ))}
+  {/* Scrollable Product Grid */}
+  <div className="flex-1 overflow-y-auto pr-2">
+    <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+      {products.map((item, index) => (
+        <div
+          key={index}
+          className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
+          onMouseEnter={() => setHoverIndex(index)}
+          onMouseLeave={() => setHoverIndex(null)}
+        >
+          <img
+            src={hoverIndex === index ? item.image[1] : item.image[0]}
+            alt={item.pname}
+            className="w-full h-60 object-cover transition duration-300"
+          />
+
+          <div className="p-4 text-center">
+            <div className="flex justify-center items-center space-x-1 text-yellow-500 text-sm">
+              {Array(5).fill().map((_, i) => (
+                <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09L5.5 12.18 1 8.545l6.09-.89L10 2l2.91 5.655 6.09.89-4.5 3.636 1.378 5.91z" />
+                </svg>
+              ))}
+              <span className="text-gray-600 text-xs ml-2">93 reviews</span>
+            </div>
+            <h3 className="uppercase mt-2 text-sm font-semibold text-gray-800">{item.pname}</h3>
+            <p className="text-gray-600 mt-1">RS. {item.price} PKR</p>
           </div>
         </div>
+      ))}
+    </div>
+  </div>
+</div>
+
       </div>
     </div>
   );

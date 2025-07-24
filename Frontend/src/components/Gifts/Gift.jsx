@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import BasicPagination from '../Pegination/Pegination';
@@ -19,6 +19,7 @@ import cardimg7 from '../../assets/Images/Gifts/g7.webp';
 import cardimghover7 from '../../assets/Images/Gifts/g7hover.webp';
 import cardimg8 from '../../assets/Images/Gifts/g8.webp';
 import cardimghover8 from '../../assets/Images/Gifts/g8hover.webp';
+import axios from 'axios';
 
 
 
@@ -36,87 +37,89 @@ import cardimghover8 from '../../assets/Images/Gifts/g8hover.webp';
 
 
 const Gifts = () => {
-  const cardsitems = [
-    {
-      img: cardimg1,
-      hover: cardimghover1,
-      text: 'Timeless - Black',
-      price: '8,130.00',
-    },
-    {
-      img: cardimg2,
-      hover: cardimghover2,
-      text: 'Hunt -Black',
-      price: '13,130.00',
-    },
-    {
-      img: cardimg3,
-      hover: cardimghover3,
-      text: 'Hunt -Black',
-      price: '23,130.00',
-    },
-    {
-      img: cardimg4,
-      hover: cardimghover4,
-      text: 'Triune - Black',
-      price: '51,899.00',
-    },
-    {
-      img: cardimg5,
-      hover: cardimghover5,
-      text: 'Grade - Black',
-      price: '28,130.00',
-    },
+          const [products, setProducts] = useState([]);
   
-    {
-      img: cardimg6,
-      hover: cardimghover6,
-      text: 'Timeless - Black',
-      price: '62,130.00',
-    },
-    {
-      img: cardimg7,
-      hover: cardimghover7,
-      text: 'Hunt -Black',
-      price: '44,130.00',
-    },
-    {
-      img: cardimg8,
-      hover: cardimghover8,
-      text: 'Triune - Black',
-      price: '25,899.00',
-    },
-    {
-      img: cardimg5,
-      hover: cardimghover5,
-      text: 'Grade - Black',
-      price: '18,130.00',
-    },
-    {
-      img: cardimg1,
-      hover: cardimghover1,
-      text: 'Timeless - Black',
-      price: '12,130.00',
-    },
-    {
-      img: cardimg3,
-      hover: cardimghover3,
-      text: 'Hunt -Black',
-      price: '33,130.00',
-    },
-    {
-      img: cardimg4,
-      hover: cardimghover4,
-      text: 'Triune - Black',
-      price: '45,899.00',
-    },
-    {
-      img: cardimg5,
-      hover: cardimghover5,
-      text: 'Grade - Black',
-      price: '88,130.00',
-    },
-  ];
+  // const cardsitems = [
+  //   {
+  //     img: cardimg1,
+  //     hover: cardimghover1,
+  //     text: 'Timeless - Black',
+  //     price: '8,130.00',
+  //   },
+  //   {
+  //     img: cardimg2,
+  //     hover: cardimghover2,
+  //     text: 'Hunt -Black',
+  //     price: '13,130.00',
+  //   },
+  //   {
+  //     img: cardimg3,
+  //     hover: cardimghover3,
+  //     text: 'Hunt -Black',
+  //     price: '23,130.00',
+  //   },
+  //   {
+  //     img: cardimg4,
+  //     hover: cardimghover4,
+  //     text: 'Triune - Black',
+  //     price: '51,899.00',
+  //   },
+  //   {
+  //     img: cardimg5,
+  //     hover: cardimghover5,
+  //     text: 'Grade - Black',
+  //     price: '28,130.00',
+  //   },
+  
+  //   {
+  //     img: cardimg6,
+  //     hover: cardimghover6,
+  //     text: 'Timeless - Black',
+  //     price: '62,130.00',
+  //   },
+  //   {
+  //     img: cardimg7,
+  //     hover: cardimghover7,
+  //     text: 'Hunt -Black',
+  //     price: '44,130.00',
+  //   },
+  //   {
+  //     img: cardimg8,
+  //     hover: cardimghover8,
+  //     text: 'Triune - Black',
+  //     price: '25,899.00',
+  //   },
+  //   {
+  //     img: cardimg5,
+  //     hover: cardimghover5,
+  //     text: 'Grade - Black',
+  //     price: '18,130.00',
+  //   },
+  //   {
+  //     img: cardimg1,
+  //     hover: cardimghover1,
+  //     text: 'Timeless - Black',
+  //     price: '12,130.00',
+  //   },
+  //   {
+  //     img: cardimg3,
+  //     hover: cardimghover3,
+  //     text: 'Hunt -Black',
+  //     price: '33,130.00',
+  //   },
+  //   {
+  //     img: cardimg4,
+  //     hover: cardimghover4,
+  //     text: 'Triune - Black',
+  //     price: '45,899.00',
+  //   },
+  //   {
+  //     img: cardimg5,
+  //     hover: cardimghover5,
+  //     text: 'Grade - Black',
+  //     price: '88,130.00',
+  //   },
+  // ];
 
   const itemsPerPage = 8;
   const [page, setPage] = useState(1);
@@ -127,8 +130,31 @@ const Gifts = () => {
   };
 
   const startIndex = (page - 1) * itemsPerPage;
-  const paginatedItems = cardsitems.slice(startIndex, startIndex + itemsPerPage);
-  const pageCount = Math.ceil(cardsitems.length / itemsPerPage);
+  const paginatedItems = products.slice(startIndex, startIndex + itemsPerPage);
+  const pageCount = Math.ceil(products.length / itemsPerPage);
+
+    
+      useEffect(() => {
+        const fetchProducts = async () => {
+          try {
+           const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/product`);
+    // console.log(response)
+    const productgets = response.data.getdata
+    
+       const gifts = productgets.filter(
+            (product) => product.category === 'gifts'
+          );
+            setProducts(gifts);
+         
+          } catch (error) {
+            console.error("Error fetching products:", error);
+          }
+        };
+    
+        fetchProducts();
+    
+      }, []);
+  
 
   return (
     <div>
@@ -148,10 +174,14 @@ const Gifts = () => {
               onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(null)}
             >
-              <img
-                src={hoverIndex === index ? item.hover : item.img}
+                                                 <img
+               src={
+  hoverIndex === index
+    ? item.image[1] || item.image[0]
+    : item.image[0]
+}
                 alt={item.text}
-                className="w-full  h-[300px] object-cover transition duration-300"
+                className="w-full  h-[300px] object-contain  transition duration-300"
               />
               <div className="p-4 text-center">
                 <div className="flex justify-center items-center space-x-1 text-yellow-500 text-sm">
@@ -164,7 +194,7 @@ const Gifts = () => {
                     ))}
                   <span className="text-gray-600 text-xs ml-2">93 reviews</span>
                 </div>
-                <h3 className="uppercase mt-2 text-sm font-semibold text-gray-800">{item.text}</h3>
+                <h3 className="uppercase mt-2 text-sm font-semibold text-gray-800">{item.pname}</h3>
                 <p className="text-gray-600 mt-1">RS. {item.price} PKR</p>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import BasicPagination from '../Pegination/Pegination';
@@ -17,8 +17,10 @@ import cardimg7   from '../../assets/Images/ladiesimg/img7.webp';
 import cardimghover7 from '../../assets/Images/ladiesimg/imghover7.webp';
 import cardimg8   from '../../assets/Images/ladiesimg/img8.webp';
 import cardimghover8 from '../../assets/Images/ladiesimg/imghover8.webp';
+import axios from 'axios';
 
 const Ladieswallet = () => {
+    const [products, setProducts] = useState([]);
   const cardsitems = [
     {
       img: cardimg1,
@@ -110,8 +112,30 @@ const Ladieswallet = () => {
   };
 
   const startIndex = (page - 1) * itemsPerPage;
-  const paginatedItems = cardsitems.slice(startIndex, startIndex + itemsPerPage);
-  const pageCount = Math.ceil(cardsitems.length / itemsPerPage);
+  const paginatedItems = products.slice(startIndex, startIndex + itemsPerPage);
+  const pageCount = Math.ceil(products.length / itemsPerPage);
+
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+       const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/product`);
+// console.log(response)
+const productgets = response.data.getdata
+
+   const ladieswallet = productgets.filter(
+        (product) => product.category === 'ladieswallet'
+      );
+        setProducts(ladieswallet);
+     
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+
+  }, []);
 
   return (
     <div>
@@ -131,10 +155,14 @@ const Ladieswallet = () => {
               onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(null)}
             >
-              <img
-                src={hoverIndex === index ? item.hover : item.img}
+                          <img
+               src={
+  hoverIndex === index
+    ? item.image[1] || item.image[0]
+    : item.image[0]
+}
                 alt={item.text}
-                className="w-full h-[300px] object-cover transition duration-300"
+                className="w-full  h-[300px] object-contain  transition duration-300"
               />
               <div className="p-4 text-center">
                 <div className="flex justify-center items-center space-x-1 text-yellow-500 text-sm">

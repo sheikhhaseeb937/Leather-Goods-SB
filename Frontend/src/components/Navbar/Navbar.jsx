@@ -17,7 +17,7 @@ const Navbar = () => {
     { name: "Bags", link: "/bags" },
      { name: "Ladies Bags", link: "/ladiesbags" },
     { name: "Gifts", link: "/gifts" },
-    { name: "Card hOlder", link: "/cardholder" },
+    { name: "Card hOlder", link: "/cardsholder" },
     { name: "Keychain", link: "/keychain" },
     { name: "Track Order", link: "/track-order" },
   ];
@@ -30,6 +30,8 @@ const Navbar = () => {
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('role');
+
     navigate('/login');
   };
 

@@ -3,91 +3,107 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import BasicPagination from '../Pegination/Pegination';
 
-import cardimg1 from '../../assets/Images/wall.webp';
-import cardimghover1 from '../../assets/Images/hovercard1.webp';
-import cardimg3 from '../../assets/Images/wallet3.webp';
-import cardimghover3 from '../../assets/Images/wallethover3.webp';
-import cardimg4 from '../../assets/Images/wallet4.webp';
-import cardimghover4 from '../../assets/Images/wallethover4.webp';
-import cardimg5 from '../../assets/Images/wallet6.webp';
-import cardimghover5 from '../../assets/Images/wallethover6.webp';
+import cardimg1 from '../../assets/Images/Keychain/k1.webp';
+import cardimghover1 from '../../assets/Images/Keychain/k1hover.webp';
+import cardimg2 from '../../assets/Images/Keychain/k2.webp';
+import cardimghover2 from '../../assets/Images/Keychain/k2hover.webp';
+import cardimg3 from '../../assets/Images/Keychain/k3.webp';
+import cardimghover3 from '../../assets/Images/Keychain/k3hover.webp';
+import cardimg4 from '../../assets/Images/Keychain/k4.webp';
+import cardimghover4 from '../../assets/Images/Keychain/k4hover.webp';
+import cardimg5 from '../../assets/Images/Keychain/k5.webp';
+import cardimghover5 from '../../assets/Images/Keychain/k5hover.webp';
+import cardimg6 from '../../assets/Images/Keychain/k6.webp';
+import cardimghover6 from '../../assets/Images/Keychain/k6.webp';
 import axios from 'axios';
 
-const Menswallet = () => {
-     const [products, setProducts] = useState([]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const Keychain = () => {
+              const [products, setProducts] = useState([]);
+  
   // const cardsitems = [
   //   {
   //     img: cardimg1,
   //     hover: cardimghover1,
   //     text: 'Timeless - Black',
-  //     price: '2,130.00',
+  //     price: '8,130.00',
+  //   },
+  //   {
+  //     img: cardimg2,
+  //     hover: cardimghover2,
+  //     text: 'Hunt -Black',
+  //     price: '13,130.00',
   //   },
   //   {
   //     img: cardimg3,
   //     hover: cardimghover3,
   //     text: 'Hunt -Black',
-  //     price: '3,130.00',
+  //     price: '23,130.00',
   //   },
   //   {
   //     img: cardimg4,
   //     hover: cardimghover4,
   //     text: 'Triune - Black',
-  //     price: '5,899.00',
+  //     price: '51,899.00',
   //   },
   //   {
   //     img: cardimg5,
   //     hover: cardimghover5,
   //     text: 'Grade - Black',
-  //     price: '8,130.00',
+  //     price: '28,130.00',
   //   },
-  //   // Repeat items to simulate more data
+  
   //   {
-  //     img: cardimg1,
-  //     hover: cardimghover1,
+  //     img: cardimg6,
+  //     hover: cardimghover6,
   //     text: 'Timeless - Black',
-  //     price: '2,130.00',
+  //     price: '62,130.00',
   //   },
-  //   {
-  //     img: cardimg3,
-  //     hover: cardimghover3,
-  //     text: 'Hunt -Black',
-  //     price: '3,130.00',
-  //   },
-  //   {
-  //     img: cardimg4,
-  //     hover: cardimghover4,
-  //     text: 'Triune - Black',
-  //     price: '5,899.00',
-  //   },
+   
   //   {
   //     img: cardimg5,
   //     hover: cardimghover5,
   //     text: 'Grade - Black',
-  //     price: '8,130.00',
+  //     price: '18,130.00',
   //   },
   //   {
   //     img: cardimg1,
   //     hover: cardimghover1,
   //     text: 'Timeless - Black',
-  //     price: '2,130.00',
+  //     price: '12,130.00',
   //   },
   //   {
   //     img: cardimg3,
   //     hover: cardimghover3,
   //     text: 'Hunt -Black',
-  //     price: '3,130.00',
+  //     price: '33,130.00',
   //   },
   //   {
   //     img: cardimg4,
   //     hover: cardimghover4,
   //     text: 'Triune - Black',
-  //     price: '5,899.00',
+  //     price: '45,899.00',
   //   },
   //   {
   //     img: cardimg5,
   //     hover: cardimghover5,
   //     text: 'Grade - Black',
-  //     price: '8,130.00',
+  //     price: '88,130.00',
   //   },
   // ];
 
@@ -103,39 +119,38 @@ const Menswallet = () => {
   const paginatedItems = products.slice(startIndex, startIndex + itemsPerPage);
   const pageCount = Math.ceil(products.length / itemsPerPage);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-       const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/product`);
-// console.log(response)
-const productgets = response.data.getdata
-
-   const mensWalletProducts = productgets.filter(
-        (product) => product.category === 'menswallet'
-      );
-        setProducts(mensWalletProducts);
-     
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-
-    fetchProducts();
-
-  }, []);
-
+     useEffect(() => {
+          const fetchProducts = async () => {
+            try {
+             const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/product`);
+      // console.log(response)
+      const productgets = response.data.getdata
+      
+         const keychain = productgets.filter(
+              (product) => product.category === 'keychain'
+            );
+              setProducts(keychain);
+           
+            } catch (error) {
+              console.error("Error fetching products:", error);
+            }
+          };
+      
+          fetchProducts();
+      
+        }, []);
 
   return (
     <div>
       <Navbar />
 
       <div>
-        <h1 className='text-center font-bold text-4xl p-4 text-[#303030] font-serif mt-10'>Men's Wallets</h1>
+        <h1 className='text-center font-semibold text-4xl p-4 text-[#303030] font-serif mt-10'>KEY HOLDERS</h1>
         <p className='text-center  text-[#303030]'>
-          Stylish and functional wallets for today’s man that keep your essentials organized and <br /> accessible.
+     Our KEY HOLDERS are designed to keep your essentials secure and organized. 
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4 mt-9">
           {paginatedItems.map((item, index) => (
             <div
               key={index}
@@ -143,14 +158,14 @@ const productgets = response.data.getdata
               onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(null)}
             >
-              <img
+                                                                 <img
                src={
   hoverIndex === index
     ? item.image[1] || item.image[0]
     : item.image[0]
 }
                 alt={item.text}
-                className="w-full  h-[300px] object-contain  transition duration-300"
+                className="w-full  h-[300px] object-contain transition duration-300"
               />
               <div className="p-4 text-center">
                 <div className="flex justify-center items-center space-x-1 text-yellow-500 text-sm">
@@ -163,7 +178,7 @@ const productgets = response.data.getdata
                     ))}
                   <span className="text-gray-600 text-xs ml-2">93 reviews</span>
                 </div>
-                <h3 className="uppercase mt-2 text-sm font-semibold text-gray-800">{item.text}</h3>
+                <h3 className="uppercase mt-2 text-sm font-semibold text-gray-800">{item.pname}</h3>
                 <p className="text-gray-600 mt-1">RS. {item.price} PKR</p>
               </div>
             </div>
@@ -178,4 +193,4 @@ const productgets = response.data.getdata
   );
 };
 
-export default Menswallet;
+export default Keychain;

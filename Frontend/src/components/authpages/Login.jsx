@@ -32,10 +32,22 @@ const navigate = useNavigate()
         console.log(response)
 
         localStorage.setItem("user", JSON.stringify(response.data.user))
-        if(response){
+  
+
+const role = response.data.user.role
+localStorage.setItem('role',role)
+
+
+
+
+
+        if(response && role === "user"){
 const token = response.data.tokenjwt
 console.log(token)
 localStorage.setItem('token',token)
+/////////save role loaclstorage
+
+
 
 toast.success(response?.data?.message, {
 position: "bottom-left",
@@ -53,6 +65,21 @@ setTimeout(()=>{
 navigate('/')
 },2000)
 
+}else{
+  toast.success(response?.data?.message, {
+position: "bottom-left",
+autoClose: 3000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "dark",
+transition: Slide,
+});
+ setTimeout(()=>{
+navigate('/admin')
+},2000)
 }
 
 
@@ -78,7 +105,7 @@ navigate('/')
     <>
       <ToastContainer />
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-lg">
+      <div className="max-w-md text-white bg-gray-900 w-full  p-8 rounded-2xl shadow-lg">
         <h2 className="text-3xl font-semibold text-center mb-6">Login Account</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
   
@@ -88,7 +115,7 @@ navigate('/')
             placeholder="Email Address"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
+            className="w-full text-black bg-gray-100 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
             required
           />
           <input
@@ -97,20 +124,20 @@ navigate('/')
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
+            className="w-full text-black bg-gray-100 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
             required
           />
           
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
+            className="w-full  font-bold bg-gray-500 text-white py-2 rounded-md hover:bg-gray-600 transition"
           >
             Login
           </button>
         </form>
-        <p className="text-center text-sm text-gray-600 mt-4">
+        <p className="text-center text-sm text-gray-300 mt-4">
           Already have an account?
-          <a  className="text-blue-500 hover:underline ml-1">
+          <a  className="text-blue-500 hover:font-bold ml-1">
             <Link to="/signup" >Sig up</Link>
           </a>
         </p>

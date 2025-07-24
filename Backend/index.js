@@ -6,6 +6,7 @@ import mongoConnect from "./src/config/db.js";
 import authRoutes from "./src/routes/auth.route.js";
 
 import imageroutes from "./src/routes/image.routes.js";
+import productRoute from "./src/routes/product.route.js";
 
 // Load .env variables
 dotenv.config();
@@ -31,8 +32,13 @@ app.get("/", (req, res) => {
 ///api
 app.use("/api",authRoutes)
 
-///api images user
+///api images user ///product images
 app.use("/api",imageroutes) 
+
+///api Product create
+app.use("/api",productRoute) 
+
+
 
 // Port
 const PORT = process.env.PORT || 8000;

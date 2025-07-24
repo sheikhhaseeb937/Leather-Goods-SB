@@ -42,7 +42,7 @@ export const userCreate = async (req, res) => {
             newUser,
         });
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             error: error.message,
         });
     }
@@ -97,7 +97,7 @@ export const userlogin = async (req, res) => {
         
     } catch (error) {
         /// Handle errors
-        res.status(500).json({
+        return res.status(500).json({
             message: "An error occurred while logging in",
             error: error.message,
         })

@@ -21,7 +21,7 @@ dotenv.config();
   cloudinary: cloudinary,
   params: {
     folder: 'uploads',
-    allowed_formats: ['jpg', 'png', 'jpeg', 'gif'],
+    allowed_formats: ["jpeg", "png", "jpg", "webp"],
   },
 });
 

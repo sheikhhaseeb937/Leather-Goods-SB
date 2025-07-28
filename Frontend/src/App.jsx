@@ -25,6 +25,9 @@ import AddProduct from "./components/Admin/AddProduct";
 import Listedproducts from "./components/Admin/Listedproducts";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import CheckoutPage from "./components/Ordercheckout/Checkout";
+import AdminOrdersDashboard from "./components/Admin/OrderAllDeltails";
+
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -46,6 +49,8 @@ function App() {
  <Route path="/gifts" element={ <><Gifts /> </> } />
  <Route path="/cardsholder" element={ <> <CardsHolder /> </>  } />
  <Route path="/keychain" element={<> <Keychain /> </> }/>
+
+
   <Route path="/product/:id" element={<><Navbar/>, <ProductDetail /> </> }/>
     <Route path="/checkout/:id" element={<><Navbar/>, <CheckoutPage /> </> }/>
  </Route>
@@ -55,6 +60,7 @@ function App() {
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/overview" element={<Dashboard />} />
           <Route path="/listedproduct" element={<Listedproducts />} />
+           <Route path="/orders" element={<><AdminOrdersDashboard /> </> } />
         </Route>
         <Route path="*" element={<Pagenotfound />} />
 

@@ -14,6 +14,14 @@ const formSchema = new mongoose.Schema({
   engraving: { type: Object, default:"no" }, 
   payment: { type: String,  },
   shipping: { type: Boolean , default: false },
+  status: { type: String , default: "pending" },
+  pname: { type: String  },
+  price: { type: String  },
+  category: { type: String  },
+
+
+
+
 
 
 

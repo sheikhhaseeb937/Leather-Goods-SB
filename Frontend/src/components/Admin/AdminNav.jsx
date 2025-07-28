@@ -14,7 +14,7 @@ navigate('/login')
   return (
     <div className="relative">
       {/* Top bar with toggle button on mobile */}
-      <div className="bg-gray-900 text-white flex justify-between items-center p-4 md:hidden">
+      <div className=" bg-gray-900 text-white flex justify-between items-center p-4 md:hidden">
         <h2 className="text-xl font-bold">SB Leather Goods</h2>
         <button onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -23,7 +23,7 @@ navigate('/login')
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 z-40 w-[85%] h-[100vh] bg-gray-900 text-white p-4 transform transition-transform duration-300 ease-in-out
+        className={`fixed top-0 left-0 z-40 min-h-screen w-full bg-gray-900 text-white p-4 transform transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:static md:block`}
       >
         <h2 className="text-2xl font-bold mb-6 hidden md:block">SB Leather Goods</h2>

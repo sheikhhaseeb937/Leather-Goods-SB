@@ -82,7 +82,9 @@ setCheckproduct(checkOrder)
 
     if (!checkproduct) return <div className="p-4 text-center">Loading...</div>;
 
-// 
+
+        console.log(checkproduct.pname);
+
 
 // console.log(savedData);
 const handleSubmit = async () => {
@@ -92,6 +94,9 @@ const handleSubmit = async () => {
     engraving:engr,
    payment:  paymentMethod,
   shipping: billingSameAsShipping,
+  pname : checkproduct.pname,
+  price : checkproduct.price,
+  category : checkproduct.category,
    
   
   };

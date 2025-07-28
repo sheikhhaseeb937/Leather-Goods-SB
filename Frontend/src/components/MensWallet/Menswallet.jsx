@@ -12,9 +12,14 @@ import cardimghover4 from '../../assets/Images/wallethover4.webp';
 import cardimg5 from '../../assets/Images/wallet6.webp';
 import cardimghover5 from '../../assets/Images/wallethover6.webp';
 import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Menswallet = () => {
+      
      const [products, setProducts] = useState([]);
+       const {id} =useParams();
+         const navigate = useNavigate()
+   
   // const cardsitems = [
   //   {
   //     img: cardimg1,
@@ -107,14 +112,16 @@ const Menswallet = () => {
     const fetchProducts = async () => {
       try {
        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/product`);
-// console.log(response)
+console.log(response)
 const productgets = response.data.getdata
 
    const mensWalletProducts = productgets.filter(
         (product) => product.category === 'menswallet'
       );
         setProducts(mensWalletProducts);
-     
+
+
+
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -125,8 +132,13 @@ const productgets = response.data.getdata
   }, []);
 
 
+    const handleProductdetails =(id)=>{
+      console.log(id)
+  navigate(`/product/${id}`)
+    }
   return (
     <div>
+
       <Navbar />
 
       <div>
@@ -135,13 +147,15 @@ const productgets = response.data.getdata
           Stylish and functional wallets for today’s man that keep your essentials organized and <br /> accessible.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4">
+        <div  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4">
           {paginatedItems.map((item, index) => (
+            // console.log(item),
             <div
               key={index}
               className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 w-[300px] mx-auto"
               onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(null)}
+              onClick={()=>handleProductdetails(item._id)}
             >
               <img
                src={
@@ -150,7 +164,7 @@ const productgets = response.data.getdata
     : item.image[0]
 }
                 alt={item.text}
-                className="w-full  h-[300px] object-contain  transition duration-300"
+                className="w-full  h-[400px] object-contain  transition duration-300"
               />
               <div className="p-4 text-center">
                 <div className="flex justify-center items-center space-x-1 text-yellow-500 text-sm">

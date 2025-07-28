@@ -16,6 +16,7 @@ import cardimghover5 from '../../assets/Images/Keychain/k5hover.webp';
 import cardimg6 from '../../assets/Images/Keychain/k6.webp';
 import cardimghover6 from '../../assets/Images/Keychain/k6.webp';
 import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
@@ -35,7 +36,8 @@ import axios from 'axios';
 
 const Keychain = () => {
               const [products, setProducts] = useState([]);
-  
+      const {id} =useParams();
+         const navigate = useNavigate()
   // const cardsitems = [
   //   {
   //     img: cardimg1,
@@ -139,6 +141,10 @@ const Keychain = () => {
           fetchProducts();
       
         }, []);
+           const handleProductdetails =(id)=>{
+      console.log(id)
+  navigate(`/product/${id}`)
+    }
 
   return (
     <div>
@@ -157,6 +163,7 @@ const Keychain = () => {
               className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 w-[300px] mx-auto"
               onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(null)}
+                  onClick={()=>handleProductdetails(item._id)}
             >
                                                                  <img
                src={

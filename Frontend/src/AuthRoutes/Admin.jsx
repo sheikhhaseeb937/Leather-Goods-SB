@@ -12,7 +12,7 @@ const Admin = ()=>{
     const isAdmin = localStorage.getItem('role')
     console.log(isAdmin)
     return(
-        isAdmin === "admin"?<Outlet/>: <Navigate to={'/'}/>
+        isAdmin === "admin"?<Outlet/>: <Navigate to={'/login'}/>
     )
 
 

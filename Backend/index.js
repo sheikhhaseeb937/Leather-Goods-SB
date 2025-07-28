@@ -7,6 +7,7 @@ import authRoutes from "./src/routes/auth.route.js";
 
 import imageroutes from "./src/routes/image.routes.js";
 import productRoute from "./src/routes/product.route.js";
+import { orderRoutes } from "./src/routes/order.routes.js";
 
 // Load .env variables
 dotenv.config();
@@ -37,6 +38,8 @@ app.use("/api",imageroutes)
 
 ///api Product create
 app.use("/api",productRoute) 
+///order api
+app.use("/api",orderRoutes)
 
 
 

@@ -153,7 +153,7 @@ transition: Slide,
     
 <>
  <ToastContainer />
-    <div className="flex flex-col lg:flex-row w-full min-h-screen">
+    <div className="flex flex-col  lg:flex-row w-full  min-h-screen">
       {/* Sidebar */}
   
       <div className="w-full lg:w-[20%] h-auto lg:h-screen border-b lg:border-b-0 border-gray-200">
@@ -161,7 +161,7 @@ transition: Slide,
       </div>
 
       {/* Main Content */}
-      <div className="w-full lg:w-[80%] flex justify-center items-start lg:items-center p-4 lg:p-0">
+      <div className="w-full lg:w-[80%] flex justify-center items-center lg:items-center p-4 lg:p-0">
         <div className="w-full bg-gray-900 max-w-2xl p-6 text-white border border-gray-200 rounded-3xl shadow-md mt-4 lg:mt-0">
           <h1 className="text-center mb-6 font-bold text-2xl lg:text-3xl">ADD PRODUCT</h1>
 

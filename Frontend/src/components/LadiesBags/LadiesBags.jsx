@@ -20,6 +20,7 @@ import cardimghover7 from '../../assets/Images/LadiesBags/L7hover.webp';
 import cardimg8 from '../../assets/Images/LadiesBags/L8.webp';
 import cardimghover8 from '../../assets/Images/LadiesBags/L8hover.webp';
 import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
@@ -38,6 +39,8 @@ import axios from 'axios';
 
 const LadiesBags = () => {
         const [products, setProducts] = useState([]);
+            const {id} =useParams();
+         const navigate = useNavigate()
   // const cardsitems = [
   //   {
   //     img: cardimg1,
@@ -154,6 +157,14 @@ const LadiesBags = () => {
   
     }, []);
 
+
+
+       const handleProductdetails =(id)=>{
+      console.log(id)
+  navigate(`/product/${id}`)
+    }
+
+
   return (
     <div>
       <Navbar />
@@ -171,6 +182,7 @@ const LadiesBags = () => {
               className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 w-[300px] mx-auto"
               onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(null)}
+                  onClick={()=>handleProductdetails(item._id)}
             >
                                              <img
                src={

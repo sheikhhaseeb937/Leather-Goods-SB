@@ -18,90 +18,93 @@ import cardimghover7 from '../../assets/Images/ladiesimg/imghover7.webp';
 import cardimg8   from '../../assets/Images/ladiesimg/img8.webp';
 import cardimghover8 from '../../assets/Images/ladiesimg/imghover8.webp';
 import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Ladieswallet = () => {
     const [products, setProducts] = useState([]);
-  const cardsitems = [
-    {
-      img: cardimg1,
-      hover: cardimghover1,
-      text: 'Timeless - Black',
-      price: '2,130.00',
-    },
-      {
-      img: cardimg2,
-      hover: cardimghover2,
-      text: 'Hunt -Black',
-      price: '3,130.00',
-    },
-    {
-      img: cardimg3,
-      hover: cardimghover3,
-      text: 'Hunt -Black',
-      price: '3,130.00',
-    },
-    {
-      img: cardimg4,
-      hover: cardimghover4,
-      text: 'Triune - Black',
-      price: '5,899.00',
-    },
-    {
-      img: cardimg5,
-      hover: cardimghover5,
-      text: 'Grade - Black',
-      price: '8,130.00',
-    },
+        const {id} =useParams();
+         const navigate = useNavigate()
+  // const cardsitems = [
+  //   {
+  //     img: cardimg1,
+  //     hover: cardimghover1,
+  //     text: 'Timeless - Black',
+  //     price: '2,130.00',
+  //   },
+  //     {
+  //     img: cardimg2,
+  //     hover: cardimghover2,
+  //     text: 'Hunt -Black',
+  //     price: '3,130.00',
+  //   },
+  //   {
+  //     img: cardimg3,
+  //     hover: cardimghover3,
+  //     text: 'Hunt -Black',
+  //     price: '3,130.00',
+  //   },
+  //   {
+  //     img: cardimg4,
+  //     hover: cardimghover4,
+  //     text: 'Triune - Black',
+  //     price: '5,899.00',
+  //   },
+  //   {
+  //     img: cardimg5,
+  //     hover: cardimghover5,
+  //     text: 'Grade - Black',
+  //     price: '8,130.00',
+  //   },
 
-    {
-      img: cardimg7,
-      hover: cardimghover7,
-      text: 'Timeless - Black',
-      price: '2,130.00',
-    },
-    {
-      img: cardimg8,
-      hover: cardimghover8,
-      text: 'Hunt -Black',
-      price: '3,130.00',
-    },
-    {
-      img: cardimg4,
-      hover: cardimghover4,
-      text: 'Triune - Black',
-      price: '5,899.00',
-    },
-    {
-      img: cardimg5,
-      hover: cardimghover5,
-      text: 'Grade - Black',
-      price: '8,130.00',
-    },
-    {
-      img: cardimg1,
-      hover: cardimghover1,
-      text: 'Timeless - Black',
-      price: '2,130.00',
-    },
-    {
-      img: cardimg3,
-      hover: cardimghover3,
-      text: 'Hunt -Black',
-      price: '3,130.00',
-    },
-    {
-      img: cardimg4,
-      hover: cardimghover4,
-      text: 'Triune - Black',
-      price: '5,899.00',
-    },
-    {
-      img: cardimg5,
-      hover: cardimghover5,
-      text: 'Grade - Black',
-      price: '8,130.00',
-    },
-  ];
+  //   {
+  //     img: cardimg7,
+  //     hover: cardimghover7,
+  //     text: 'Timeless - Black',
+  //     price: '2,130.00',
+  //   },
+  //   {
+  //     img: cardimg8,
+  //     hover: cardimghover8,
+  //     text: 'Hunt -Black',
+  //     price: '3,130.00',
+  //   },
+  //   {
+  //     img: cardimg4,
+  //     hover: cardimghover4,
+  //     text: 'Triune - Black',
+  //     price: '5,899.00',
+  //   },
+  //   {
+  //     img: cardimg5,
+  //     hover: cardimghover5,
+  //     text: 'Grade - Black',
+  //     price: '8,130.00',
+  //   },
+  //   {
+  //     img: cardimg1,
+  //     hover: cardimghover1,
+  //     text: 'Timeless - Black',
+  //     price: '2,130.00',
+  //   },
+  //   {
+  //     img: cardimg3,
+  //     hover: cardimghover3,
+  //     text: 'Hunt -Black',
+  //     price: '3,130.00',
+  //   },
+  //   {
+  //     img: cardimg4,
+  //     hover: cardimghover4,
+  //     text: 'Triune - Black',
+  //     price: '5,899.00',
+  //   },
+  //   {
+  //     img: cardimg5,
+  //     hover: cardimghover5,
+  //     text: 'Grade - Black',
+  //     price: '8,130.00',
+  //   },
+  // ];
 
   const itemsPerPage = 8;
   const [page, setPage] = useState(1);
@@ -137,6 +140,12 @@ const productgets = response.data.getdata
 
   }, []);
 
+  
+    const handleProductdetails =(id)=>{
+      console.log(id)
+  navigate(`/product/${id}`)
+    }
+
   return (
     <div>
       <Navbar />
@@ -154,6 +163,7 @@ const productgets = response.data.getdata
               className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 w-[300px] mx-auto"
               onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(null)}
+                  onClick={()=>handleProductdetails(item._id)}
             >
                           <img
                src={

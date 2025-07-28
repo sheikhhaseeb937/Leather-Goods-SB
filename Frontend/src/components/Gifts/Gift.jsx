@@ -20,6 +20,7 @@ import cardimghover7 from '../../assets/Images/Gifts/g7hover.webp';
 import cardimg8 from '../../assets/Images/Gifts/g8.webp';
 import cardimghover8 from '../../assets/Images/Gifts/g8hover.webp';
 import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 
@@ -38,7 +39,8 @@ import axios from 'axios';
 
 const Gifts = () => {
           const [products, setProducts] = useState([]);
-  
+      const {id} =useParams();
+         const navigate = useNavigate()
   // const cardsitems = [
   //   {
   //     img: cardimg1,
@@ -154,7 +156,10 @@ const Gifts = () => {
         fetchProducts();
     
       }, []);
-  
+     const handleProductdetails =(id)=>{
+      console.log(id)
+  navigate(`/product/${id}`)
+    }
 
   return (
     <div>
@@ -173,6 +178,7 @@ const Gifts = () => {
               className="bg-white shadow-md rounded-xl overflow-hidden hover:shadow-lg transition-shadow duration-300 w-[300px] mx-auto"
               onMouseEnter={() => setHoverIndex(index)}
               onMouseLeave={() => setHoverIndex(null)}
+                  onClick={()=>handleProductdetails(item._id)}
             >
                                                  <img
                src={

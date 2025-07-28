@@ -7,11 +7,13 @@ import cardimg4 from '../../assets/Images/wallet4.webp';
 import cardimghover4 from '../../assets/Images/wallethover4.webp';
 import cardimg5 from '../../assets/Images/wallet6.webp';
 import cardimghover5 from '../../assets/Images/wallethover6.webp';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const TopsallerProduct = () => {
+
   const cardsitems = [
     {
       img: cardimg1,
@@ -43,8 +45,13 @@ const TopsallerProduct = () => {
   // Local hover tracking for each card
   const [hoverIndex, setHoverIndex] = useState(null);
 
+const navigate = useNavigate()
+  const handleProductdetails =()=>{
+navigate('/productdetails')
+  }
+
   return (
-    <div>
+    <div onClick={handleProductdetails}>
         <p className='text-center mt-[100px] text-[#303030]'>Featured collection</p>
         <h1 className='text-center font-bold text-4xl p-4 text-[#303030] font-serif'>TOP SELLERS</h1>
     

@@ -31,6 +31,9 @@ const Navbar = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('role');
+    localStorage.removeItem('qty');
+    localStorage.removeItem('detailsEngraving');
+
 
     navigate('/login');
   };

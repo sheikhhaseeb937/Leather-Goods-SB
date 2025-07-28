@@ -23,6 +23,8 @@ import Dashboard from "./components/Admin/Admin";
 import Pagenotfound from "./components/Pagenotfound";
 import AddProduct from "./components/Admin/AddProduct";
 import Listedproducts from "./components/Admin/Listedproducts";
+import ProductDetail from "./components/ProductDetail/ProductDetail";
+import CheckoutPage from "./components/Ordercheckout/Checkout";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -36,84 +38,26 @@ function App() {
         </Route>
 
         <Route element={<PageAccess />}>
-          <Route
-            path="/"
-            element={
-              <>
-                <Navbar />
-                <Home />
-              </>
-            }
-          />
-          <Route
-            path="/mens"
-            element={
-              <>
-                <Menswallet />
-              </>
-            }
-          />
-          <Route
-            path="/ladies"
-            element={
-              <>
-                <Ladieswallet />
-              </>
-            }
-          />
-          <Route
-            path="/bags"
-            element={
-              <>
-                <Bags />
-              </>
-            }
-          />
-          <Route
-            path="/ladiesbags"
-            element={
-              <>
-                <LadiesBags />
-              </>
-            }
-          />
-          <Route
-            path="/gifts"
-            element={
-              <>
-                <Gifts />
-              </>
-            }
-          />
-          <Route
-            path="/cardsholder"
-            element={
-              <>
-                <CardsHolder />
-              </>
-            }
-          />
-          <Route
-            path="/keychain"
-            element={
-              <>
-                <Keychain />
-              </>
-            }
-          />
-        </Route>
+ <Route path="/" element={<><Navbar /> <Home /> </> } />
+ <Route path="/mens" element={ <> <Menswallet /> </> }/>
+ <Route path="/ladies" element={<><Ladieswallet /> </>  } />
+ <Route path="/bags" element={ <> <Bags /> </> }/>
+ <Route path="/ladiesbags" element={ <> <LadiesBags /> </>  } />
+ <Route path="/gifts" element={ <><Gifts /> </> } />
+ <Route path="/cardsholder" element={ <> <CardsHolder /> </>  } />
+ <Route path="/keychain" element={<> <Keychain /> </> }/>
+  <Route path="/product/:id" element={<><Navbar/>, <ProductDetail /> </> }/>
+    <Route path="/checkout/:id" element={<><Navbar/>, <CheckoutPage /> </> }/>
+ </Route>
 
-        <Route element={<Admin />}>
-     <Route path="/admin"element={<><Dashboard /> </> }/>
-<Route path="/addproduct" element={<AddProduct/>}/>
-<Route path="/overview" element={<Dashboard/>}/>
-<Route path="/listedproduct" element={<Listedproducts/>}/>
-
-
-          
+ <Route element={<Admin />}>
+<Route path="/admin" element={ <> <Dashboard />{" "} </> } />
+          <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/overview" element={<Dashboard />} />
+          <Route path="/listedproduct" element={<Listedproducts />} />
         </Route>
         <Route path="*" element={<Pagenotfound />} />
-        
+
       </Routes>
     </div>
   );

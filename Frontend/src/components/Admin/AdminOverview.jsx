@@ -33,7 +33,7 @@ const COLORS = ['#6366F1', '#10B981', '#F59E0B', '#EF4444'];
 
   return (
 <>
-<div className="flex min-h-screen w-[100%] bg-gray-100">
+<div className="flex min-h-screen w-[100%] items-center bg-gray-100">
   {/* Sidebar */}
   <aside
     className={`fixed z-40 top-0 left-0 w-[85%] md:w-[250px] h-full  bg-gray-900 text-white p-4 transform transition-transform duration-300 ease-in-out

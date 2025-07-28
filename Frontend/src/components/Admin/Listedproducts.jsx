@@ -3,11 +3,23 @@ import AdminNav from './AdminNav';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import PopupInput from '../POPedit/POP';
+import { Slide, toast, ToastContainer } from 'react-toastify';
 
 const Listedproducts = () => {
   const [hoverIndex, setHoverIndex] = useState(null);
   const [products, setProducts] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
+     const [ispopup, setIspopup] = useState(false);
+
+const [selectedProduct, setSelectedProduct] = useState({
+  _id: '',
+  pname: '',
+  price: '',
+  category: '',
+
+});
+
   const navigate = useNavigate();
     const logout = ()=>{
     localStorage.removeItem('user');
@@ -16,7 +28,6 @@ navigate('/login')
     
 }
 
-  useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/product`);
@@ -25,11 +36,110 @@ navigate('/login')
         console.error("Error fetching products:", error);
       }
     };
-
+  useEffect(() => {
     fetchProducts();
   }, []);
 
+////editbtn
+const handleInputChange = (e) => {
+  const { name, value } = e.target;
+  setSelectedProduct((prev) => ({ ...prev, [name]: value }));
+  console.log(selectedProduct)
+};
+
+const Editbtn = async(id)=>{
+  console.log("edit" ,id)
+  const product = products.find((p) => p._id === id);
+  // console.log(product)
+  if (product) {
+    setSelectedProduct(product);
+    setIspopup(true);
+  }
+console.log(selectedProduct)
+
+}
+
+// edit new form 
+const handleEditSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const newdata = await axios.put(`${import.meta.env.VITE_BASE_URL}/api/product/${selectedProduct._id}`, selectedProduct);
+    
+    fetchProducts();
+    setIspopup(false);
+    
+toast.success(newdata?.data?.message, {
+position: "bottom-left",
+autoClose: 3000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "dark",
+transition: Slide,
+});
+  } catch (err) {
+    
+toast.error(err?.data?.message, {
+position: "bottom-left",
+autoClose: 3000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "dark",
+transition: Slide,
+});
+    console.error('Edit error:', err.message);
+  }
+};
+
+
+
+const deletebtn =async (id)=>{
+  console.log("deletebtn",id)
+    try {
+     const res = await axios.delete(`${import.meta.env.VITE_BASE_URL}/api/product/${id}`);
+console.log(res)
+
+fetchProducts()
+
+toast.success(res?.data?.message, {
+position: "bottom-left",
+autoClose: 3000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "dark",
+transition: Slide,
+});
+  } catch (err) {
+    
+toast.error(err?.message, {
+position: "bottom-left",
+autoClose: 3000,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+theme: "dark",
+transition: Slide,
+});
+       console.error('Delete error:', err.response?.data || err.message);
+  }
+}
+
+
+
   return (
+ <>
+  <ToastContainer />
+ 
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
     <aside
@@ -100,6 +210,85 @@ navigate('/login')
             <h3 className="uppercase mt-2 text-sm font-semibold text-gray-800">{item.pname}</h3>
             <p className="text-gray-600 mt-1">RS. {item.price} PKR</p>
           </div>
+          <div className='flex justify-around'>
+
+{/* Edit Modal Popup */}
+{ispopup && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-5">
+    <div className="bg-white w-full max-w-lg p-6 rounded-xl shadow-xl">
+      <h2 className="text-xl font-bold mb-4 text-center">Edit Product</h2>
+      <form onSubmit={handleEditSubmit} className="space-y-4">
+        <input
+          type="text"
+          name="pname"
+          value={selectedProduct.pname}
+          onChange={handleInputChange}
+          placeholder="Product Name"
+          className="w-full p-2 border rounded"
+        />
+        <input
+          type="text"
+          name="price"
+          value={selectedProduct.price}
+          onChange={handleInputChange}
+          placeholder="Price"
+          className="w-full p-2 border rounded"
+        />
+        {/* <input
+          type="text"
+          name="category"
+          value={selectedProduct.category}
+          onChange={handleInputChange}
+          placeholder="Category"
+          className="w-full p-2 border rounded"
+        /> */}
+         <select
+value={selectedProduct.category}
+          onChange={handleInputChange}
+    name="category"
+    className="w-full font-bold text-black bg-gray-100 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
+    required
+  >
+    <option value="" disabled>Select Category</option>
+    <option value="menswallet">Men's Wallet</option>
+    <option value="ladieswallet">Ladies Wallet</option>
+    <option value="bags">Bags</option>
+    <option value="ladiesbags">Ladies Bags</option>
+    <option value="gifts">Gifts</option>
+    <option value="cardholder">Card Holder</option>
+    <option value="keychain">Keychain</option>
+  </select>
+     
+
+        <div className="flex justify-end gap-2 pt-2">
+          <button
+            type="button"
+         
+            onClick={()=>setIspopup(false)}
+            className="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+)}
+
+
+       <button  onClick={()=>{Editbtn(item._id)
+        setIspopup(true)
+       }}  className="w-[100px] bg-green-500 mb-3 font-semibold text-white py-1 rounded-md hover:bg-green-600 transition" >
+        Edit Card </button>
+           <button onClick={()=>deletebtn(item._id)} className="w-[100px] bg-red-500 mb-3 font-semibold  text-white py-1 rounded-md hover:bg-red-600 transition" >
+        DELETE </button>
+          </div>
         </div>
       ))}
     </div>
@@ -107,7 +296,7 @@ navigate('/login')
 </div>
 
       </div>
-    </div>
+    </div></>
   );
 };
 

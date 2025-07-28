@@ -36,3 +36,45 @@ res.status(200).json({message:"Product data fetched successfully",getdata});
 }
 
 
+export const deleteproduct = async (req,res)=>{
+try {
+
+      const { id } = req.params;
+const deletedata = await Product.findByIdAndDelete(id);
+console.log(deletedata)
+if(!deletedata){
+     return res.status(404).json({ message: 'Product not found' });
+}
+     res.status(200).json({ message: 'Product deleted successfully' });   
+
+
+
+} catch (error) {
+  res.status(500).json({ message: 'Server error', error });
+}
+}
+
+export const editproduct = async (req,res)=>{
+try {
+
+      const { id } = req.params;
+const editproduct = await Product.findByIdAndUpdate(id,{
+       $set: req.body ,
+       new: true
+});
+console.log(editproduct)
+if(!editproduct){
+     return res.status(404).json({ message: 'Product not found' });
+}
+ res.status(200).json({
+    message:"updated product successfully",
+    editproduct
+
+  }); 
+
+
+
+} catch (error) {
+  res.status(500).json({ message: 'Server error', error });
+}
+}

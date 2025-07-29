@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Slide, toast, ToastContainer } from "react-toastify";
+import bgSigup from "../../assets/Images/bg leather.avif"
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -102,10 +103,14 @@ navigate('/admin')
   };
 
   return (
+     <div
+          style={{ backgroundImage: `url(${bgSigup})` }}
+          className="bg-cover bg-center bg-fixed  min-h-screen flex items-center justify-center"
+        >
     <>
       <ToastContainer />
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="max-w-md text-white bg-gray-900 w-full  p-8 rounded-2xl shadow-lg">
+    <div className="min-h-screen flex items-center justify-center  px-4">
+      <div className="max-w-md text-white bg-black/90  w-full  p-8 rounded-2xl shadow-lg">
         <h2 className="text-3xl font-semibold text-center mb-6">Login Account</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
   
@@ -143,6 +148,7 @@ navigate('/admin')
         </p>
       </div>
     </div></>
+    </div>
   );
 };
 

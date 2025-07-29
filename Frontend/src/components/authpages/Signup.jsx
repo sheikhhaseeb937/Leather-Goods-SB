@@ -2,6 +2,7 @@ import React, { use, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Slide, toast, ToastContainer } from "react-toastify";
+import bgSigup from "../../assets/Images/bg leather.avif"
 
 const Signup = () => {
 const navigate = useNavigate()
@@ -92,65 +93,68 @@ transition: Slide,
 
   return (
     
-   <>
-     <ToastContainer />
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="max-w-md w-full bg-gray-900 text-white p-8 rounded-2xl shadow-lg">
-        <h2 className="text-3xl font-semibold text-center mb-6">Create Account</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={formData.fullName}
-            onChange={handleChange}
-            className="w-full text-black bg-gray-100 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full text-black bg-gray-100  px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full text-black bg-gray-100  px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
-            required
-          />
-           <input
-            type="file"
-                accept='image/*'
-            
+      <div
+      style={{ backgroundImage: `url(${bgSigup})` }}
+      className="bg-cover bg-center bg-fixed  min-h-screen flex items-center justify-center"
+    >
+      <>
+        <ToastContainer />
+
+        {/* Form container */}
+        <div className="max-w-md w-full bg-black/90 text-white p-8 rounded-2xl shadow-lg mx-4">
+          <h2 className="text-3xl font-semibold text-center mb-6">Create Account</h2>
           
-onChange={handleFiles}
-            className="w-full text-black bg-gray-100  px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
-           
-          />
-          
-          <button
-            type="submit"
-            className="w-full bg-gray-500 font-bold text-white py-2 rounded-md hover:bg-gray-600 transition"
-          >
-            Sign Up
-          </button>
-        </form>
-        <p className="text-center text-sm text-gray-300 mt-4">
-          Already have an account?
-          <a  className="text-blue-500 hover:font-bold ml-1">
-          
-            <Link to="/login">  Log in</Link>
-          </a>
-        </p>
-      </div>
-    </div></>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={formData.fullName}
+              onChange={handleChange}
+              className="w-full text-black bg-gray-100 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full text-black bg-gray-100 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              className="w-full text-black bg-gray-100 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
+              required
+            />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFiles}
+              className="w-full text-black bg-gray-100 px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-400"
+            />
+            <button
+              type="submit"
+              className="w-full bg-gray-500 font-bold text-white py-2 rounded-md hover:bg-gray-600 transition"
+            >
+              Sign Up
+            </button>
+          </form>
+
+          <p className="text-center text-sm text-gray-300 mt-4">
+            Already have an account?
+            <Link to="/login" className="text-blue-500 hover:font-bold ml-1">
+              Log in
+            </Link>
+          </p>
+        </div>
+      </>
+    </div>
   );
 };
 

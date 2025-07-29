@@ -110,7 +110,7 @@ navigate('/admin')
     <>
       <ToastContainer />
     <div className="min-h-screen flex items-center justify-center  px-4">
-      <div className="max-w-md text-white bg-black/90  w-full  p-8 rounded-2xl shadow-lg">
+      <div className="max-w-md text-white bg-black/70 backdrop-blur-md  w-full  p-8 rounded-2xl shadow-lg">
         <h2 className="text-3xl font-semibold text-center mb-6">Login Account</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
   

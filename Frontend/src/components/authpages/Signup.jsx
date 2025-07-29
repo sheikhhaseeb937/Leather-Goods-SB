@@ -101,7 +101,7 @@ transition: Slide,
         <ToastContainer />
 
         {/* Form container */}
-        <div className="max-w-md w-full bg-black/90 text-white p-8 rounded-2xl shadow-lg mx-4">
+        <div className="max-w-md w-full bg-black/70 backdrop-blur-md text-white p-8 rounded-2xl shadow-lg mx-4">
           <h2 className="text-3xl font-semibold text-center mb-6">Create Account</h2>
           
           <form onSubmit={handleSubmit} className="space-y-4">

@@ -190,7 +190,7 @@ const LadiesBags = () => {
     ? item.image[1] || item.image[0]
     : item.image[0]
 }
-                alt={item.text}
+                alt={item.pname}
                 className="w-full  h-[300px] object-contain  transition duration-300"
               />
               <div className="p-4 text-center">

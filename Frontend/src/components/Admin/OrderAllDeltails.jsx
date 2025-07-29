@@ -2,11 +2,22 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AdminNav from "./AdminNav";
 import AdminOrderDetails from "./Orders";
+import { Link, useNavigate } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 
 const AdminOrdersDashboard = () => {
   const [orders, setOrders] = useState([]);
   const [filter, setFilter] = useState("all");
   const [selectedOrder, setSelectedOrder] = useState(null);
+
+ const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+const logout = ()=>{
+    localStorage.removeItem('user');
+    localStorage.removeItem('role');
+navigate('/login')
+    
+}
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -41,12 +52,65 @@ const AdminOrdersDashboard = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
+    <div className="flex   flex-col lg:flex-row min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className="w-full lg:w-[250px]">
-        <AdminNav />
+<div className="flex  bg-gray-100">
+    {/* Fixed Sidebar */}
+    <aside className="fixed top-0 left-0 h-screen w-[250px] bg-gray-900 text-white z-40 p-4 hidden lg:block">
+      <h2 className="text-2xl font-bold mb-6">SB Leather Goods</h2>
+      <nav className="flex flex-col space-y-4">
+        <Link to="/overview" className="hover:text-purple-400">Overview</Link>
+        <Link to="/addproduct" className="hover:text-purple-400">Add Product</Link>
+        <Link to="/orders" className="hover:text-purple-400">Orders</Link>
+        <Link to="/listedproduct" className="hover:text-purple-400">Listed Product</Link>
+        <button onClick={logout} className="bg-green-700 w-[120px] h-[40px] rounded-lg hover:bg-green-800 transition">
+          Log Out
+        </button>
+      </nav>
+    </aside>
+
+    {/* Mobile Sidebar (Drawer) */}
+    <div className="w-full lg:hidden ">
+      <div className="bg-gray-900 text-white flex justify-between items-center p-4">
+        <h2 className="text-xl font-bold">SB Leather Goods</h2>
+        <button onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
       </div>
 
+      {/* Slide-In Drawer */}
+      <aside
+        className={`fixed top-0 left-0 h-screen w-[250px] bg-gray-900 text-white z-50 p-4 transform transition-transform duration-300 ease-in-out ${
+          isOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <nav className="flex flex-col space-y-4 mt-10">
+          <Link to="/overview" className="hover:text-purple-400">Overview</Link>
+          <Link to="/addproduct" className="hover:text-purple-400">Add Product</Link>
+          <Link to="/orders" className="hover:text-purple-400">Orders</Link>
+          <Link to="/listedproduct" className="hover:text-purple-400">Listed Product</Link>
+          <button onClick={logout} className="bg-green-700 w-[120px] h-[40px] rounded-lg hover:bg-green-800 transition">
+            Log Out
+          </button>
+        </nav>
+      </aside>
+
+      {/* Backdrop */}
+      {isOpen && (
+        <div
+          className="fixed  inset-0 bg-black bg-opacity-40 z-40"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+    </div>
+
+    {/* Scrollable Main Content */}
+    <main className="flex-1 ml-0 lg:ml-[250px]  overflow-y-auto p-4 sm:p-6">
+      <div className="max-w-7xl mx-auto">
+        {/* ...Rest of your code (filters, orders, etc.) */}
+      </div>
+    </main>
+  </div>
       {/* Main Content */}
       <div className="flex-1 w-full p-4 sm:p-6">
         <div className="max-w-7xl mx-auto">

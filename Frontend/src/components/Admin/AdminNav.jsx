@@ -14,7 +14,7 @@ navigate('/login')
   return (
     <div className="relative">
       {/* Top bar with toggle button on mobile */}
-      <div className=" bg-gray-900 text-white flex justify-between items-center p-4 md:hidden">
+      <div className=" bg-gray-900  text-white flex justify-between items-center p-4 md:hidden">
         <h2 className="text-xl font-bold">SB Leather Goods</h2>
         <button onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <X size={28} /> : <Menu size={28} />}

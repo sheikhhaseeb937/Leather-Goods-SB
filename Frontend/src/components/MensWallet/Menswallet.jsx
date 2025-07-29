@@ -163,7 +163,7 @@ const productgets = response.data.getdata
     ? item.image[1] || item.image[0]
     : item.image[0]
 }
-                alt={item.text}
+                alt={item.pname}
                 className="w-full  h-[400px] object-contain  transition duration-300"
               />
               <div className="p-4 text-center">
@@ -177,7 +177,7 @@ const productgets = response.data.getdata
                     ))}
                   <span className="text-gray-600 text-xs ml-2">93 reviews</span>
                 </div>
-                <h3 className="uppercase mt-2 text-sm font-semibold text-gray-800">{item.text}</h3>
+                <h3 className="uppercase mt-2 text-sm font-semibold text-gray-800">{item.pname}</h3>
                 <p className="text-gray-600 mt-1">RS. {item.price} PKR</p>
               </div>
             </div>
